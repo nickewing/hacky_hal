@@ -1,12 +1,14 @@
-HackyHAL - Hacky Home Automation Library
-========================================
+<img src="https://raw.github.com/nickewing/hacky_hal/master/support/hal-9000.png" style="float: left; padding-right: 10px;" />
+
+HackyHAL
+========
 
 What is it?
 -----------
 
-HackyHAL is in its current form is a small library meant to control devices
+HackyHAL (Hacky Home Automation Library) is in its current form is a small library meant to control devices
 through the network or serial ports.  The supported number of devices is
-currently very limited, however I hope the library will grow over time.
+currently very limited, however I hope the library will grow to support more devices over time.
 
 Who is this for?
 ----------------
@@ -41,9 +43,16 @@ Please do!  It would be great to see this library grow to support many more
 devices.  Just fork, make your changes, and send a pull request.  Please be sure
 to write tests for contributions.
 
+Contributors
+------------
+* Nick Ewing
+
+Special thanks to [Mischa McLachlan](https://www.iconfinder.com/icons/27626/9000_hal_light_red_space_icon) for the icon.
+
 License and Copyright
 ---------------------
 
 HackyHA is distributed under the MIT License.  See LICENSE.
 
 Copyright © 2013 Nick Ewing
+
