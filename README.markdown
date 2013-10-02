@@ -1,6 +1,5 @@
-<img src="https://raw.github.com/nickewing/hacky_hal/master/support/hal-9000.png" style="float: left; padding-right: 10px;" />
 
-HackyHAL
+![HackyHal](https://raw.github.com/nickewing/hacky_hal/master/support/hal-9000-small.png) HackyHAL
 ========
 
 What is it?
@@ -47,7 +46,7 @@ Contributors
 ------------
 * Nick Ewing
 
-Special thanks to [Mischa McLachlan](https://www.iconfinder.com/icons/27626/9000_hal_light_red_space_icon) for the icon.
+Special thanks to [Mischa McLachlan](https://www.iconfinder.com/icons/27626/9000_hal_light_red_space_icon) for the HAL 9000 icon.
 
 License and Copyright
 ---------------------
