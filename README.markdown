@@ -4,9 +4,10 @@
 What is it?
 -----------
 
-HackyHAL (Hacky Home Automation Library) is in its current form is a small library meant to control devices
-through the network or serial ports.  The supported number of devices is
-currently very limited, however I hope the library will grow to support more devices over time.
+HackyHAL (Hacky Home Automation Library) is in its current form is a small
+Ruby library meant to control devices through the network or serial ports.  
+The supported number of devices is currently very limited, however I hope
+the library will grow to support more devices over time.
 
 Who is this for?
 ----------------
