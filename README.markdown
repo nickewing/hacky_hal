@@ -4,7 +4,7 @@ HackyHAL - Hacky Home Automation Library
 What is it?
 -----------
 
-HackyHA is in its current form is a small library meant to control devices
+HackyHAL is in its current form is a small library meant to control devices
 through the network or serial ports.  The supported number of devices is
 currently very limited, however I hope the library will grow over time.
 
@@ -28,9 +28,9 @@ Supported functionality varies greatly with each device.
 
 How can I use it?
 -------------------
-HackyHA is simply a library to be used however you want.
+HackyHAL is simply a library to be used however you want.
 
-You'll likely want to run a server utilizing HackyHA on a networked computer (a
+You'll likely want to run a server utilizing HackyHAL on a networked computer (a
 Raspberry Pi works great).
 You'd then attach any serial port devices to that computer.  You could then
 create a mobile app to control the server.  See the examples directory.
