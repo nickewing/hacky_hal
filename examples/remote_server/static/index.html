@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Remote</title>
+
+	<meta charset="utf-8">
+
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=320.1">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="images/touch-icon-iphone-114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/touch-icon-iphone-114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/touch-icon-iphone-114.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="images/touch-icon-ipad-144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/touch-icon-ipad-144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/touch-icon-ipad-144.png" />
+
+  <link rel="apple-touch-startup-image"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    href="images/apple-touch-startup-image-640x1096.png">
+
+	<link rel="stylesheet"  href="jquery.mobile-1.3.2.min.css">
+	<link rel="stylesheet"  href="jquery.mobile.structure-1.3.2.min.css">
+	<link rel="stylesheet"  href="themes/dark.min.css">
+
+  <script type="text/javascript">
+    window.addEventListener("load",function() {
+      setTimeout(function(){
+        window.scrollTo(0, 1);
+      }, 0);
+    });
+
+    document.ontouchmove = function(e) {e.preventDefault()};
+  </script>
+	<script src="jquery.js"></script>
+	<script src="jquery.mobile-1.3.2.min.js"></script>
+	<script src="remote.js"></script>
+  <style type="text/css">
+    body {
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      -khtml-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
+    .ui-controlgroup[data-inline="true"] {
+      display: inline-block;
+    }
+    
+    .ui-btn {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .ui-mini .ui-btn-inner {
+      height: 15px !important;
+    }
+
+    .ui-content {
+      padding: 5px;
+    }
+    
+    .ui-body {
+      margin-bottom: 5px;
+    }
+
+    h3 {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .device-config-label {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+
+<div data-role="page" data-theme="a" id="page1">
+  <div data-role="header"> 
+    <h1>Remote</h1> 
+  </div> 
+
+  <div data-role="content">
+    <div class="ui-body ui-body-a">
+      <h3>Power</h3>
+      <a href="javascript:remoteFunction('/custom/toggle_av_receiver_power', {})" data-role="button" data-inline="true" data-mini="true">AV Receiver</a>
+      <a href="javascript:remoteFunction('/custom/toggle_projector_power', {})" data-role="button" data-inline="true" data-mini="true">Projector</a>
+    </div>
+
+    <div class="ui-body ui-body-a">
+      <h3>Device Configuration</h3>
+
+      <div>
+        <label for="avr_input" class="device-config-label">Input 1: </label>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
+          <input type="radio" name="avr_input" id="avr_input_av2" value="AV2">
+          <label for="avr_input_av2">Computer</label>
+          <input type="radio" name="avr_input" id="avr_input_av3" value="AV3" checked="checked">
+          <label for="avr_input_av3">Laptop</label>
+          <input type="radio" name="avr_input" id="avr_input_av1" value="AV1">
+          <label for="avr_input_av1">Roku</label>
+          <input type="radio" name="avr_input" id="avr_input_av4" value="AV4">
+          <label for="avr_input_av4">RPi</label>
+        </fieldset>
+      </div>
+
+      <div>
+        <label for="avr_output" class="device-config-label">Output 1: </label>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
+          <input type="radio" name="avr_output" id="avr_output_out_1" value="OUT_1">
+          <label for="avr_output_out_1">Projector</label>
+          <input type="radio" name="avr_output" id="avr_output_out_2" value="OUT_2" checked="checked">
+          <label for="avr_output_out_2">Monitor</label>
+          <input type="radio" name="avr_output" id="avr_output_out_12" value="OUT_1,OUT_2">
+          <label for="avr_output_out_12">Both</label>
+          <input type="radio" name="avr_output" id="avr_output_out_0" value="">
+          <label for="avr_output_out_0">Off</label>
+        </fieldset>
+      </div>
+
+      <div>
+        <label for="secondary_monitor_switch_input" class="device-config-label">Input 2: </label>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
+          <input type="radio" name="secondary_monitor_switch_input" id="secondary_monitor_input_1" value="1">
+          <label for="secondary_monitor_input_1">Computer</label>
+          <input type="radio" name="secondary_monitor_switch_input" id="secondary_monitor_input_2" value="2" checked="checked">
+          <label for="secondary_monitor_input_2">Laptop</label>
+          <input type="radio" name="secondary_monitor_switch_input" id="secondary_monitor_input_3" value="3">
+          <label for="secondary_monitor_input_3">Off</label>
+        </fieldset>
+      </div>
+
+      <a href="javascript:changeInputOutput()" data-role="button" data-inline="true" data-mini="true">Set</a>
+    </div>
+
+
+    <div class="ui-body ui-body-a">
+      <h3>Volume<span id="volume_value"></span></h3>
+
+      <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
+        <a href="javascript:increaseVolume(-10)" data-role="button" data-icon="minus">10</a>
+        <a href="javascript:increaseVolume(-1)" data-role="button" data-icon="minus">1</a>
+        <a href="javascript:increaseVolume(+1)" data-role="button" data-icon="plus">1</a>
+        <a href="javascript:increaseVolume(+10)" data-role="button" data-icon="plus">10</a>
+      </fieldset>
+
+      <a href="javascript:mute()" data-role="button" data-inline="true" data-mini="true">Mute</a>
+    </div>
+
+    <div class="ui-body ui-body-a">
+      <h3>Actions</h3>
+      <a href="javascript:remoteFunction('/custom/rain', {})" data-role="button" data-mini="true">Rain</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
