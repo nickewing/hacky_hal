@@ -1,4 +1,3 @@
-
 ![HackyHal](https://raw.github.com/nickewing/hacky_hal/master/support/hal-9000-small.png) HackyHAL
 ========
 
@@ -51,7 +50,7 @@ Special thanks to [Mischa McLachlan](https://www.iconfinder.com/icons/27626/9000
 License and Copyright
 ---------------------
 
-HackyHA is distributed under the MIT License.  See LICENSE.
+HackyHAL is distributed under the MIT License.  See LICENSE.
 
 Copyright © 2013 Nick Ewing
 
