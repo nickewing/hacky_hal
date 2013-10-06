@@ -2,11 +2,8 @@ require "spec_helper"
 require "hacky_hal/device_controllers/base"
 
 describe HackyHAL::DeviceControllers::Base do
-  describe "#[]" do
-    it "should return option values" do
-      controller = described_class.new(dummy_argument: "dummy value")
-      controller[:dummy_argument].should == "dummy value"
-    end
+  it "should include Options" do
+    described_class.ancestors.should include(HackyHAL::Options)
   end
 
   describe "#log" do

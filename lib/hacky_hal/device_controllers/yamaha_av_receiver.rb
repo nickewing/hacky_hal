@@ -1,7 +1,7 @@
 require "net/http"
-require "uri"
 require "rexml/document"
 require_relative "base"
+require_relative "../util"
 
 module HackyHAL
   module DeviceControllers
@@ -9,19 +9,19 @@ module HackyHAL
       CONTROL_PATH = "/YamahaRemoteControl/ctrl"
       CONTROL_PORT = 80
 
+      attr_reader :host_uri
+
       def initialize(options)
         super(options)
         ensure_option(:device_resolver)
 
-        @host_uri = options[:device_resolver].uri
+        resolver = Util.object_from_hash(options[:device_resolver], DeviceResolvers)
+
+        @host_uri = resolver.uri
         @host_uri.path = CONTROL_PATH
         @host_uri.port = CONTROL_PORT
 
         log("Host found at: #{@host_uri.to_s}", :debug)
-      end
-
-      def label
-        "#{super}(#{options[:control_host]})"
       end
 
       def basic_status

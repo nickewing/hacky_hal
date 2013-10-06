@@ -3,6 +3,7 @@ require "uri"
 require "cgi"
 require "rexml/document"
 require_relative "base"
+require_relative "../util"
 
 # Docs: http://sdkdocs.roku.com/display/sdkdoc/External+Control+Guide
 
@@ -32,10 +33,14 @@ module HackyHAL
         KEY_BACKSPACE, KEY_SEARCH, KEY_ENTER
       ])
 
+      attr_reader :host_uri
+
       def initialize(options)
         super(options)
         ensure_option(:device_resolver)
-        @host_uri = options[:device_resolver].uri
+
+        resolver = Util.object_from_hash(options[:device_resolver], DeviceResolvers)
+        @host_uri = resolver.uri
 
         log("Host found at: #{@host_uri.to_s}", :debug)
       end

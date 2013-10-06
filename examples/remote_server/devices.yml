@@ -1,0 +1,39 @@
+---
+projector:
+  type: "EpsonProjector"
+  serial_device_path: "/dev/serial/by-id/usb-FTDI_USB_Serial_Converter_FTDW9VXM-if00-port0"
+  model: "HC8350"
+  av_receiver_output: "OUT_1"
+av_receiver:
+  type: YamahaAvReceiver
+  device_resolver:
+    type: SSDP
+    usn: "uuid:5f9ec1b3-ed59-1900-4530-00a0de90e681::upnp:rootdevice"
+  default_input: "AV3"
+roku:
+  type: "Roku"
+  device_resolver:
+    type: SSDP
+    usn: "uuid:31474d33-3548-5b76-0000-050199040000:upnp:rootdevice"
+  av_receiver_input: "AV1"
+pc:
+  type: "LinuxComputer"
+  host: "charles"
+  user: "nick"
+  av_receiver_input: "AV2"
+  secondary_monitor_switch_input: 1
+laptop:
+  type: "OsxComputer"
+  host: "nick-aa-mbp"
+  user: "nick"
+  av_receiver_input: "AV3"
+  secondary_monitor_switch_input: 2
+secondary_monitor_switch:
+  type: "IoGearAviorHdmiSwitch"
+  serial_device_path: "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A101E4FV-if00-port0"
+  unused_input: 4
+primary_monitor:
+  type: "Base"
+  av_receiver_output: "OUT_2"
+secondary_monitor:
+  type: "Base"
