@@ -4,6 +4,8 @@ require_relative "base"
 module HackyHAL
   module DeviceControllers
     class GenericSsh < Base
+      MAX_COMMAND_RETRIES = 1
+
       attr_reader :host, :user, :ssh_options
 
       def initialize(options)
@@ -18,18 +20,23 @@ module HackyHAL
       end
 
       def exec(command)
-        log("Command: #{command.inspect}", :debug)
-
-        connect unless connected?
-
         out = nil
+        retries = 0
 
         begin
+          connect unless connected?
+          log("Command: #{command.inspect}", :debug)
           out = ssh_exec(command)
           log("Output: #{out.inspect}", :debug)
-        rescue => e
+        rescue Net::SSH::Disconnect, EOFError  => e
           log("Command failed: #{e.class.name} - #{e.message}", :warn)
           disconnect
+
+          if retries < MAX_COMMAND_RETRIES
+            log("Retrying last command", :warn)
+            retries += 1
+            retry
+          end
         end
 
         out
@@ -48,10 +55,9 @@ module HackyHAL
 
       def disconnect
         @ssh.close if connected?
-        @ssh = nil
-        nil
       rescue Net::SSH::Disconnect
-        nil
+      ensure
+        @ssh = nil
       end
 
       private

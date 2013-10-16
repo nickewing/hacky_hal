@@ -63,17 +63,19 @@ describe HackyHAL::DeviceControllers::GenericSsh do
 
       describe "on command failure" do
         before(:each) do
-          @ssh.stub(:exec!).and_raise(EOFError.new("foo"))
-        end
-
-        it "should disconnect" do
-          @generic_ssh.should_receive(:disconnect)
-          @generic_ssh.exec("dummy_command")
+          @generic_ssh.stub(:ssh_exec).and_raise(EOFError.new("foo"))
         end
 
         it "should log warn message" do
-          @generic_ssh.should_receive(:log).with("Command: \"dummy_command\"", :debug)
-          @generic_ssh.should_receive(:log).with("Command failed: EOFError - foo", :warn)
+          @generic_ssh.should_receive(:log).with("Command: \"dummy_command\"", :debug).twice
+          @generic_ssh.should_receive(:log).with("Command failed: EOFError - foo", :warn).twice
+          @generic_ssh.should_receive(:log).with("Retrying last command", :warn).once
+          @generic_ssh.exec("dummy_command")
+        end
+
+        it "should retry once after reconnecting" do
+          @generic_ssh.should_receive(:disconnect).twice
+          @generic_ssh.should_receive(:connect).twice
           @generic_ssh.exec("dummy_command")
         end
       end
@@ -102,19 +104,26 @@ describe HackyHAL::DeviceControllers::GenericSsh do
       it "should close the ssh connection if connected" do
         @generic_ssh.connect
         @ssh.should_receive(:close)
-        @generic_ssh.disconnect.should == nil
+        @generic_ssh.disconnect.should be_nil
       end
 
       it "should not close the ssh connection if not connected" do
         @generic_ssh.should_receive(:connected?).and_return(false)
         @ssh.should_not_receive(:close)
-        @generic_ssh.disconnect.should == nil
+        @generic_ssh.disconnect.should be_nil
       end
 
       it "should return nil on Net::SSH::Disconnect" do
         @generic_ssh.connect
         @ssh.should_receive(:close).and_raise(Net::SSH::Disconnect)
-        @generic_ssh.disconnect.should == nil
+        @generic_ssh.disconnect.should be_nil
+      end
+
+      it "should still disconnect on Net::SSH::Disconnect" do
+        @generic_ssh.connect
+        @ssh.should_receive(:close).and_raise(Net::SSH::Disconnect)
+        @generic_ssh.disconnect
+        @generic_ssh.connected?.should be_false
       end
     end
 
