@@ -19,11 +19,13 @@ module HackyHAL
 
       def xrandr_command(options)
         x_env_variables = [
-          "export CONSOLE=`sudo fgconsole`",
-          "export SESSION=`who -s | grep tty$CONSOLE | tr '()' ' '`",
-          "export DISPLAY=`echo $SESSION | awk '{print $5}'`",
-          "export XUSER=`echo $SESSION | awk '{print $1}'`",
-          "export XAUTHORITY=/home/$XUSER/.Xauthority"
+          "CONSOLE=$(sudo fgconsole)",
+          "SESSION=$(who -s | grep tty$CONSOLE | tr '()' ' ')",
+          "XUSER=$(echo $SESSION | awk '{print $1}')",
+          "DISPLAY=$(echo $SESSION | awk '{print $5}')",
+          "XAUTHORITY=/home/$XUSER/.Xauthority",
+          "export DISPLAY",
+          "export XAUTHORITY"
         ].join("; ")
 
         command = "#{x_env_variables}; xrandr -d $DISPLAY #{options}"
