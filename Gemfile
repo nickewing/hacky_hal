@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "upnp", :git => "https://github.com/turboladen/upnp.git"
+gem "upnp-nickewing"
 gem "net-ssh"
 gem "serialport"
 

@@ -10,6 +10,7 @@ Gem::Specification.new do |gem|
   gem.summary     = gem.description
   gem.homepage    = ""
 
+  gem.add_dependency("upnp-nickewing", "~> 0.1.0")
   gem.add_dependency("serialport", "~> 1.1.0")
   gem.add_dependency("net-ssh", "~> 2.6.0")
 
