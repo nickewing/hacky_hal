@@ -36,6 +36,9 @@ Raspberry Pi works great).
 You'd then attach any serial port devices to that computer.  You could then
 create a mobile app to control the server.  See the examples directory.
 
+See my [HackyHAL remote example repository](https://github.com/nickewing/hacky_hal_remote_example)
+for example usage.
+
 Can I contribue?
 ----------------
 Please do!  It would be great to see this library grow to support many more
