@@ -153,6 +153,17 @@ module HackyHAL
         put_request("<Main_Zone><Volume><Mute>#{value}</Mute></Volume></Main_Zone>")
       end
 
+      def sound_program
+        response = get_request("<Main_Zone><Surround><Program_Sel><Current>GetParam</Current></Program_Sel></Surround></Main_Zone>")
+        response.elements["YAMAHA_AV/Main_Zone/Surround/Program_Sel/Current/Sound_Program"].text
+      end
+
+      def sound_program=(program_name)
+        response = put_request("<Main_Zone><Surround><Program_Sel><Current><Sound_Program>#{program_name}</Sound_Program></Current></Program_Sel></Surround></Main_Zone>")
+        puts response
+        # response.elements["YAMAHA_AV/Main_Zone/Surround/Program_Sel/Current/Sound_Program"].text
+      end
+
       private
 
       def request(body)
