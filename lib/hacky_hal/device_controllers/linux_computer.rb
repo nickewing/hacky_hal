@@ -3,6 +3,9 @@ require_relative "generic_ssh"
 module HackyHAL
   module DeviceControllers
     class LinuxComputer < GenericSsh
+      # All display methods require the sudo user to have password-less access
+      # to run the fgconsole command.
+
       def mirror_screens(source_screen, dest_screen)
         xrandr_command("--output #{dest_screen} --same-as #{source_screen}")
       end
