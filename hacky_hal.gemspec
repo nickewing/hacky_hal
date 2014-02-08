@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name    = "hacky_hal"
-  gem.version = "0.2.3"
+  gem.version = "0.2.4"
 
   gem.authors     = ["Nick Ewing"]
   gem.email       = ["nick@nickewing.net"]
@@ -17,4 +17,6 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($\)
   gem.test_files    = gem.files.grep(/^spec/)
   gem.require_paths = ["lib"]
+
+  gem.license = 'MIT'
 end
